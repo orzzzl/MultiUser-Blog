@@ -1,10 +1,19 @@
-{% extends "base.html" %}
+{% extends "front_base.html" %}
 
-{% block content %}
+{% block title %} Front Page {% endblock %}
 
-  {% for p in posts %}
-    {{ p.render() | safe }}
-    <br><br>
-  {% endfor %}
 
+{% block head %}
+    {{ super() }}
+    <link href="../static/post.css" rel="stylesheet">
+{% endblock %}
+
+{% block container_content %}
+    {{ super() }}
+    <div class="article">
+        {% for p in posts %}
+             {{ p.render() | safe }}
+
+        {% endfor %}
+    </div>
 {% endblock %}

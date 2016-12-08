@@ -1,21 +1,30 @@
-{% extends "base.html" %}
+{% extends "front_base.html" %} 
 
-{% block content %}
-  <h2>new post</h2>
+{% block title %} New Post {% endblock %} 
 
-    <form method="post">
-      <label>
-        <div>subject</div>
-        <input type="text" name="subject" value="{{subject}}">
-      </label>
 
-      <label>
-        <div>blog</div>
-        <textarea name="content">{{content}}</textarea>
-      </label>
+{% block head %} 
+{{ super() }}
+<link href="../static/editing.css" rel="stylesheet"> 
+{% endblock %} 
 
-      <div class="error">{{error}}</div>
 
-      <input type="submit">
-    </form>
+{% block container_content %} 
+{{ super() }}
+<h2>Write a new blog!!</h2>
+<form method="post">
+    <div class="form-group">
+        <label>Subject:</label>
+        <input type="text" name="subject" class="form-control" value="{{content}}">
+    </div>
+
+
+    <div class="form-group">
+        <label>Content:</label>
+        <textarea class="form-control" name="content" rows="11">{{content}}</textarea>
+    </div>
+    <button type="submit" class="btn sub-font">Submit</button>
+</form>
+
+<div class="error">{{error}}</div>
 {% endblock %}

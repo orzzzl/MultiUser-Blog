@@ -10,7 +10,7 @@ class User(db.Model):
 
     @classmethod
     def by_id(cls, uid):
-        return User.get_by_id(uid, parent = users_key())
+        return User.get_by_id(int(uid), parent = users_key())
 
     @classmethod
     def by_name(cls, name):
@@ -29,4 +29,7 @@ class User(db.Model):
         u = cls.by_name(name)
         if u and pw == u.pw:
             return u
+
+
+
 

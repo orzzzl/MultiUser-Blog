@@ -1,0 +1,17 @@
+.rest-content {
+    border: dotted;
+    border-width: 1px;
+}
+
+.date-font {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 12px;
+    font-weight: normal;
+    color: #FF7070;
+    letter-spacing: 0.2em;
+}
+
+.header-font {
+    color: #C93;
+}
+

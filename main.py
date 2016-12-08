@@ -20,7 +20,7 @@ from handler import front
 from handler import newpost
 from handler import permalink
 from handler import logout_handler
-
+from handler import debug
 
 app = webapp2.WSGIApplication([
     ('/', main_page.MainPage),
@@ -29,5 +29,6 @@ app = webapp2.WSGIApplication([
     ('/front', front.FrontHandler),
     ('/newpost', newpost.NewPostHandler),
     ('/permalink/([0-9]+)', permalink.Permalink),
-    ('/logout', logout_handler.Logout)
+    ('/logout', logout_handler.Logout),
+    ('/debug', debug.Debug)
 ], debug=True)

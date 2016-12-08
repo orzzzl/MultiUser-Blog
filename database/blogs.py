@@ -32,7 +32,7 @@ class Post(db.Model):
 
     @classmethod
     def all_post_by_user(cls, userid):
-        posts = db.GqlQuery("select * from Post WHERE uid =:1 order by created desc", userid)
+        posts = db.GqlQuery("select * from Post WHERE uid = :u order by created desc" , u=userid)
         return posts
 
     @classmethod

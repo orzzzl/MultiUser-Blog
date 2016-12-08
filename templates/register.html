@@ -1,70 +1,30 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html>
-  <head>
-    <title>Sign Up</title>
-    <style type="text/css">
-      .label {text-align: right}
-      .error {color: red}
-    </style>
+{% block title %} Register {% endblock %}
 
-  </head>
+{% block head %}
+    {{ super() }}
+    <link href="../static/signin_and_signup.css" rel="stylesheet">
+{% endblock %}
 
-  <body>
-    <h2>Signup</h2>
-    <form method="post">
-      <table>
-        <tr>
-          <td class="label">
-            Username
-          </td>
-          <td>
-            <input type="text" name="username" value="{{username}}">
-          </td>
-          <td class="error">
-            {{error_username}}
-          </td>
-        </tr>
-
-        <tr>
-          <td class="label">
-            Password
-          </td>
-          <td>
-            <input type="password" name="password" value="">
-          </td>
-          <td class="error">
-            {{error_password}}
-          </td>
-        </tr>
-
-        <tr>
-          <td class="label">
-            Verify Password
-          </td>
-          <td>
-            <input type="password" name="verify" value="">
-          </td>
-          <td class="error">
-            {{error_verify}}
-          </td>
-        </tr>
-
-        <tr>
-          <td class="label">
-            Email (optional)
-          </td>
-          <td>
-            <input type="text" name="email" value="{{email}}">
-          </td>
-          <td class="error">
-            {{error_email}}
-          </td>
-        </tr>
-      </table>
-
-      <input type="submit">
-    </form>
-  </body>
-
-</html>
+{% block body_content %}
+    <div class="container">
+        <div id="logbox">
+          <form id="signup" method="post" action="/register">
+            <h1>create an account</h1>
+            <input name="username" type="text" placeholder="What's your username?" pattern="^[\w]{3,25}$" autofocus="autofocus" required="required" class="input pass"/>
+            <input name="password" type="password" placeholder="Choose a password" required="required" class="input pass"/>
+            <input name="verify" type="password" placeholder="Confirm password" required="required" class="input pass"/>
+            <input name="email" type="email" placeholder="Email address" class="input pass"/>
+            <input type="submit" value="Sign me up!" class="inputButton"/>
+            <div class="text-center">
+                <div class="error">{{error_username}}</div>
+                <div class="error">{{error_password}}</div>
+                <div class="error">{{error_verify}}</div>
+                <div class="error">{{error_email}}</div>
+                already have an account? <a href="/login" id="login_id">login</a>
+            </div>
+          </form>
+        </div>
+    </div>
+{% endblock %}

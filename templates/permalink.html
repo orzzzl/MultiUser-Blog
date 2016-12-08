@@ -1,5 +1,16 @@
-{% extends "base.html" %}
+{% extends "front_base.html" %}
 
-{% block content %}
-  {{post.render() | safe}}
+{% block title %} Permalink {% endblock %}
+
+
+{% block head %}
+    {{ super() }}
+    <link href="../static/post.css" rel="stylesheet">
+{% endblock %}
+
+{% block container_content %}
+    {{ super() }}
+    <div class="article">
+        {{ post.render() | safe }}
+    </div>
 {% endblock %}
