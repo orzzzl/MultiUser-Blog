@@ -14,7 +14,6 @@ class Edit(BaseHandler):
             subject = self.request.get('subject')
             content = self.request.get('content')
             pst = self.request.get('post_id')
-            self.write(self.user)
             if subject and content:
                 p  = Post.get_post(pst)
                 p.subject = subject

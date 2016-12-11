@@ -20,6 +20,7 @@
             {% if username %}
                 {% if username|string() == p.author|string() %}
                     <span> <a href="/edit/{{p.key().id()}}"> edit </a> </span>
+                    <span> <a href="/delete/{{p.key().id()}}"> delete </a> </span>
                 {% else %}
                     <span> <a> like </a> </span>
                 {% endif %}

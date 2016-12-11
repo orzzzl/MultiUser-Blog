@@ -22,6 +22,7 @@ from handler import permalink
 from handler import logout_handler
 from handler import debug
 from handler import edit
+from handler import delete
 
 app = webapp2.WSGIApplication([
     ('/', main_page.MainPage),
@@ -32,5 +33,6 @@ app = webapp2.WSGIApplication([
     ('/permalink/([0-9]+)', permalink.Permalink),
     ('/logout', logout_handler.Logout),
     ('/edit/([0-9]+)', edit.Edit),
+    ('/delete/([0-9]+)', delete.Delete),
     ('/debug', debug.Debug)
 ], debug=True)

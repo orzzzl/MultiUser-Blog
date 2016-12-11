@@ -1,10 +1,11 @@
 from base_handler import BaseHandler
 from database.blogs import Post
+from database.users import User
 
 class NewPostHandler(BaseHandler):
     def get(self):
         if self.user:
-            self.render("newpost.html")
+            self.render("newpost.html", blogname=self.user.blog_name)
         else:
             self.redirect('/login')
 
@@ -19,6 +20,6 @@ class NewPostHandler(BaseHandler):
                 self.redirect('/permalink/%s' % str(p.key().id()))
             else:
                 error = "subject and content, please!"
-                self.render("newpost.html", subject=subject, content=content, error=error)
+                self.render("newpost.html", subject=subject, content=content, blogname=self.user.blog_name, error=error)
         else:
             self.redirect('login')
