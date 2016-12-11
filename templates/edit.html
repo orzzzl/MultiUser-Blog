@@ -11,7 +11,6 @@
 
 {% block container_content %} 
 {{ super() }}
-<h2>Write a new blog!!</h2>
 <form method="post">
     <div class="form-group">
         <label>Subject:</label>
@@ -23,6 +22,7 @@
         <label>Content:</label>
         <textarea class="form-control" name="content" rows="11">{{content}}</textarea>
     </div>
+    <input type="hidden" name="post_id" value="{{pst}}">
     <button type="submit" class="btn sub-font">Submit</button>
 </form>
 

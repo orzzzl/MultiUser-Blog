@@ -13,7 +13,7 @@ class LoginHandler(BaseHandler):
         u = User.login(username, password)
         if u:
             self.login(u)
-            self.redirect('/front')
+            self.redirect('/front/' + username)
         else:
             msg = 'Invalid login'
             self.render('login.html', error = msg)

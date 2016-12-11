@@ -1,15 +1,31 @@
 <div class="post">
     <div class="row date_showing">
         <h3 class="date-font">
-              {{p.created.strftime("%b %d, %Y")}}
+              {{p.created.strftime("%d %b %Y")}}
           </h3>
     </div>
     <div class="row rest-content">
         <div class="post-title header-font">
-            <h3> {{p.subject}} </h3>
+            <a href="/permalink/{{p.key().id()}}"><h3>{{p.subject}}</h3></a>
         </div>
         <div class="post-content">
             {{p._render_text | safe}}
+        </div>
+
+        <br><br>
+
+        <div class="footer">
+            <p> people who like it:</p>
+            ---posted by {{p.author}}.
+            {% if username %}
+                {% if username|string() == p.author|string() %}
+                    <span> <a href="/edit/{{p.key().id()}}"> edit </a> </span>
+                {% else %}
+                    <span> <a> like </a> </span>
+                {% endif %}
+            {% else %}
+            <span> <a href="/login"> login to like it?</a> </span>
+            {% endif %}
         </div>
     </div>
 </div>

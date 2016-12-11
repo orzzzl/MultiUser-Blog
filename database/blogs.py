@@ -1,4 +1,4 @@
-from google.appengine.ext import db
+from google.appengine.ext import db, ndb
 import jinja2
 import os
 
@@ -14,15 +14,17 @@ def render_str(template, **params):
     return t.render(params)
 
 class Post(db.Model):
-    subject = db.StringProperty(required = True)
-    content = db.TextProperty(required = True)
-    uid = db.StringProperty(required = True)
-    created = db.DateTimeProperty(auto_now_add = True)
-    last_modified = db.DateTimeProperty(auto_now = True)
+    subject = db.StringProperty(required=True)
+    content = db.TextProperty(required=True)
+    uid = db.StringProperty(required=True)
+    author = db.StringProperty(required=True)
+    created = db.DateTimeProperty(auto_now_add=True)
+    last_modified = db.DateTimeProperty(auto_now=True)
+    likes = ndb.StringProperty(repeated=True)
 
     @classmethod
-    def create_post(cls, subject, content, uid):
-        return  Post(parent=blog_key(), subject = subject, content = content, uid = uid)
+    def create_post(cls, subject, content, uid, author):
+        return  Post(parent=blog_key(), subject = subject, content = content, uid = uid, author = author)
 
     @classmethod
     def get_post(cls, post_id):
@@ -40,6 +42,6 @@ class Post(db.Model):
         posts = db.GqlQuery(cmd)
         return posts
 
-    def render(self):
+    def render(self, username):
         self._render_text = self.content.replace('\n', '<br>')
-        return render_str("post.html", p = self)
+        return render_str("post.html", p = self, username = username)

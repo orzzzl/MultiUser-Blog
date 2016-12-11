@@ -21,14 +21,16 @@ from handler import newpost
 from handler import permalink
 from handler import logout_handler
 from handler import debug
+from handler import edit
 
 app = webapp2.WSGIApplication([
     ('/', main_page.MainPage),
     ('/login', login_handler.LoginHandler),
     ('/register', register.RegisterHandler),
-    ('/front', front.FrontHandler),
+    ('/front/([\S]+)', front.FrontHandler),
     ('/newpost', newpost.NewPostHandler),
     ('/permalink/([0-9]+)', permalink.Permalink),
     ('/logout', logout_handler.Logout),
+    ('/edit/([0-9]+)', edit.Edit),
     ('/debug', debug.Debug)
 ], debug=True)

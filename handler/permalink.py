@@ -4,9 +4,11 @@ from database.blogs import Post
 class Permalink(BaseHandler):
     def get(self, pst):
         post = Post.get_post(pst)
-
+        buf = {}
+        buf['post'] = post
+        buf['username'] = self.user.name
         if not post:
             self.error(404)
             return
 
-        self.render("permalink.html", post=post)
+        self.render("permalink.html", post = post, username = self.user.name if hasattr(self.user, 'name') else None)

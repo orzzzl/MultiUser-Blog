@@ -5,6 +5,7 @@ def users_key(group = 'default'):
 
 class User(db.Model):
     name = db.StringProperty(required = True)
+    blog_name = db.StringProperty(required = True)
     pw = db.StringProperty(required = True)
     email = db.StringProperty()
 
@@ -18,10 +19,11 @@ class User(db.Model):
         return u
 
     @classmethod
-    def register(cls, name, pw, email = None):
+    def register(cls, name, pw, blog_name, email = None):
         return User(parent = users_key(),
                     name = name,
                     pw = pw,
+                    blog_name = blog_name,
                     email = email)
 
     @classmethod

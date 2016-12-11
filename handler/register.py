@@ -10,6 +10,7 @@ class RegisterHandler(BaseHandler):
         have_error = False
 
         self.username = self.request.get("username")
+        self.blog_name = self.request.get("blogname")
         self.password = self.request.get("password")
         self.email = self.request.get("email")
         self.verify = self.request.get("verify")
@@ -44,8 +45,8 @@ class RegisterHandler(BaseHandler):
             self.render('register.html', error_username = msg)
         else:
             print self.password
-            u = User.register(self.username, self.password, self.email)
+            u = User.register(self.username, self.password, self.blog_name, self.email)
             u.put()
 
             self.login(u)
-            self.redirect('/front')
+            self.redirect('/front/' + self.username)

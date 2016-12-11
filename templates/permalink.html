@@ -11,6 +11,6 @@
 {% block container_content %}
     {{ super() }}
     <div class="article">
-        {{ post.render() | safe }}
+        {{ post.render(username) | safe }}
     </div>
 {% endblock %}

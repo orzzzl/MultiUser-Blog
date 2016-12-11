@@ -14,7 +14,7 @@ class NewPostHandler(BaseHandler):
             content = self.request.get('content')
             uid = self.read_secure_cookie('user_id')
             if subject and content:
-                p = Post.create_post(subject, content, uid)
+                p = Post.create_post(subject, content, uid, self.user.name)
                 p.put()
                 self.redirect('/permalink/%s' % str(p.key().id()))
             else:
