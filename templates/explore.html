@@ -1,0 +1,20 @@
+{% extends "front_base.html" %} 
+
+{% block title %} New Post {% endblock %} 
+
+
+{% block head %} 
+{{ super() }}
+<link href="../static/editing.css" rel="stylesheet"> 
+{% endblock %} 
+
+
+{% block container_content %} 
+{{ super() }}
+    <p>Here is all blogs existing on this site :)</p>
+    <hr>
+    {% for entity in all_users %}
+        <a href="/front/{{entity.name}}">{{entity.blog_name}}</a> &nbsp;&nbsp;&nbsp;&nbsp;--- {{entity.name}}
+        <br><hr><br>
+    {% endfor %}
+{% endblock %}

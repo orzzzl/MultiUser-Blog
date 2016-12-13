@@ -22,6 +22,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/front/{{user.name}}">Home</a></li>
                     <li><a href="/newpost">New Post</a></li>
+                    <li><a href="/explore">Explore</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             {% if user %}
@@ -43,17 +44,6 @@
             </div>
         </div>
     </nav>
-    <div class="prewords">
-        {% if user %}
-        <p>
-            You are now login as {{user.name}}.
-        </p>
-        {% else %}
-         <p>
-            You are not loged in yet.
-        </p>
-        {% endif %}
-    </div>
     <div class="container_content">
         {%block container_content %} {% endblock %}
     </div>

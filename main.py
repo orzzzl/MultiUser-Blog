@@ -20,9 +20,11 @@ from handler import front
 from handler import newpost
 from handler import permalink
 from handler import logout_handler
-from handler import debug
 from handler import edit
 from handler import delete
+from handler import like_handler
+from handler import explore
+from handler import unlike_handler
 
 app = webapp2.WSGIApplication([
     ('/', main_page.MainPage),
@@ -34,5 +36,7 @@ app = webapp2.WSGIApplication([
     ('/logout', logout_handler.Logout),
     ('/edit/([0-9]+)', edit.Edit),
     ('/delete/([0-9]+)', delete.Delete),
-    ('/debug', debug.Debug)
+    ('/likes/([0-9]+)', like_handler.LikeHandler),
+    ('/unlikes/([0-9]+)', unlike_handler.UnLikeHandler),
+    ('/explore', explore.Explore)
 ], debug=True)

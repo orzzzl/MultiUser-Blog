@@ -15,13 +15,13 @@ class Edit(BaseHandler):
             content = self.request.get('content')
             pst = self.request.get('post_id')
             if subject and content:
-                p  = Post.get_post(pst)
+                p = Post.get_post(pst)
                 p.subject = subject
                 p.content = content
                 p.put()
                 self.redirect('/permalink/%s' % str(p.key().id()))
             else:
                 error = "subject and content, please!"
-                self.render("edit.html", subject=subject, content=content, pst = pst, error=error)
+                self.render("edit.html", subject=subject, content=content, pst=pst, error=error)
         else:
             self.redirect('login')

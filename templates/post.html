@@ -7,22 +7,34 @@
     <div class="row rest-content">
         <div class="post-title header-font">
             <a href="/permalink/{{p.key().id()}}"><h3>{{p.subject}}</h3></a>
+            <br>
+            <p>---posted by {{p.author}}.</p>
         </div>
         <div class="post-content">
             {{p._render_text | safe}}
         </div>
 
-        <br><br>
+        <br>
+        <hr>
 
         <div class="footer">
             <p> people who like it:</p>
-            ---posted by {{p.author}}.
+            <div>
+                {% for like in p.get_likes() %}
+                    {{like.user}},&nbsp;
+                {% endfor %}
+                <hr>
+            </div>
             {% if username %}
                 {% if username|string() == p.author|string() %}
                     <span> <a href="/edit/{{p.key().id()}}"> edit </a> </span>
                     <span> <a href="/delete/{{p.key().id()}}"> delete </a> </span>
                 {% else %}
-                    <span> <a> like </a> </span>
+                    {% if not liked %}
+                         <span> <form method="post" action="/likes/{{p.key().id()}}"> <input type="submit" class="btn btn-warning" value="Like it now!"> </form> </span>
+                    {% else %}
+                       <span> <form method="post" action="/unlikes/{{p.key().id()}}"> <input type="submit" class="btn btn-warning" value="Unlike it;("> </form> </span>
+                    {% endif %}
                 {% endif %}
             {% else %}
             <span> <a href="/login"> login to like it?</a> </span>

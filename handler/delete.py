@@ -1,12 +1,13 @@
 from base_handler import BaseHandler
 from database.blogs import Post
-from google.appengine.ext import db
+
 
 class Delete(BaseHandler):
     def get(self, pst):
         post = Post.get_post(pst)
         if self.user:
-            self.render("delete.html", subject=post.subject, content=post.content, pst=pst)
+            self.render("delete.html", subject=post.subject, content=post.content, pst=pst,
+                        blogname=self.user.blog_name)
         else:
             self.redirect('/login')
 
@@ -15,6 +16,6 @@ class Delete(BaseHandler):
             pst = self.request.get('post_id')
             p = Post.get_post(pst)
             p.delete()
-            self.render("deleted.html")
+            self.redirect('/front/' + str(self.user.name))
         except:
             self.redirect('login')

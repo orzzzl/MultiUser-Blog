@@ -12,7 +12,7 @@
     {{ super() }}
     <div class="article">
         {% for p in posts %}
-             {{ p.render(username) | safe }}
+             {{ p.render(username, cur_user) | safe }}
         {% endfor %}
     </div>
 {% endblock %}

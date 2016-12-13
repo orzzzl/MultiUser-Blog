@@ -15,8 +15,8 @@ class RegisterHandler(BaseHandler):
         self.email = self.request.get("email")
         self.verify = self.request.get("verify")
 
-        params = dict(username = self.username,
-                      email = self.email)
+        params = dict(username=self.username,
+                      email=self.email)
 
         if not valid_username(self.username):
             params['error_username'] = "That's not a valid username."
@@ -42,7 +42,7 @@ class RegisterHandler(BaseHandler):
         u = User.by_name(self.username)
         if u:
             msg = 'That user already exists.'
-            self.render('register.html', error_username = msg)
+            self.render('register.html', error_username=msg)
         else:
             print self.password
             u = User.register(self.username, self.password, self.blog_name, self.email)
